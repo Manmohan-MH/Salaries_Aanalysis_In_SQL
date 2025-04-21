@@ -109,8 +109,15 @@ FROM
  max(case when work_year = 2024 then average end) as AVG_salary_2024
  from t GROUP BY experience_level, job_title 
  )m where round((((AVG_salary_2024-AVG_salary_2023)/AVG_salary_2023)*100),2) is not null;
+
+/* 9. Find out the top 5 highest and lowest paying jobs*/
+
+select job_title, avg(salary_in_usd) as Average_Salary from salaries group by job_title order by Average_Salary DESC limit 5;
+select job_title, avg(salary_in_usd) as Average_Salary from salaries group by job_title order by Average_Salary asc limit 5;
  
- /* 9. You're a database administrator tasked with role-based access control for a company's employee database. Your goal is to implement a security measure where employees
+ select job_title, avg(salary_in_usd) as Average_Salary from salaries group by job_title order by Average_Salary DESC limit 5;
+ 
+ /* 10. You're a database administrator tasked with role-based access control for a company's employee database. Your goal is to implement a security measure where employees
  in different experience level (e.g.Entry Level, Senior level etc.) can only access details relevant to their respective experience_level, ensuring data 
  confidentiality and minimizing the risk of unauthorized access.*/
 
